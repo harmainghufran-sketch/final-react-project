@@ -1,13 +1,206 @@
+/* ===========================
+   Global Styles
+=========================== */
 body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f2f5;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ===========================
+   Navbar
+=========================== */
+nav {
+  background: linear-gradient(90deg, #0077b6, #00b4d8);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  flex-wrap: wrap;
+}
+
+nav a, nav button {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+nav a:hover, nav button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Container
+=========================== */
+.container {
+  max-width: 550px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Forms
+=========================== */
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #0077b6;
+  box-shadow: 0 0 10px rgba(0, 119, 182, 0.2);
+}
+
+/* ===========================
+   Buttons
+=========================== */
+button {
+  padding: 14px 20px;
+  margin-top: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: #0077b6;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: #00b4d8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================
+   Job Cards
+=========================== */
+.job-card {
+  background-color: #ffffff;
+  padding: 20px 25px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h3 {
+  margin: 0 0 10px 0;
+  color: #0077b6;
+  font-size: 1.2rem;
+}
+
+.job-card p {
+  margin: 0 0 8px 0;
+  color: #023e8a;
+  font-size: 0.95rem;
+}
+
+/* Job Card Buttons */
+.job-card .job-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.job-card button {
+  width: 48%;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  border-radius: 10px;
+}
+
+.job-card button.apply-btn {
+  background-color: #28a745;
+}
+
+.job-card button.apply-btn:hover {
+  background-color: #3cd77d;
+}
+
+.job-card button.delete-btn {
+  background-color: #dc3545;
+}
+
+.job-card button.delete-btn:hover {
+  background-color: #e85a6f;
+}
+
+/* ===========================
+   Page Titles
+=========================== */
+h2 {
+  text-align: center;
+  color: #0077b6;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* ===========================
+   Form Actions (multiple buttons)
+=========================== */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 700px) {
+  .container {
+    padding: 30px 25px;
+    margin: 30px 15px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .job-card .job-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .job-card button {
+    width: 100%;
+  }
 }
