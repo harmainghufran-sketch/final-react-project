@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../api/axios";
 
 function Login({ setUser }) {
   const [email, setEmail] = useState("");
@@ -7,28 +8,37 @@ function Login({ setUser }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const foundUser = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    setError("");
 
-    if (!foundUser) {
-      setError("Invalid email or password");
-      return;
+    try {
+      const res = await axios.post("/login", {
+        email: email.trim(),
+        password: password.trim(),
+      });
+
+      if (res.data.success) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setUser(res.data.user);
+        navigate("/profile");
+      } else {
+        setError(res.data.message || "Invalid email or password");
+      }
+    } catch (err) {
+      setError("Server error. Please try again.");
     }
-
-    localStorage.setItem("user", JSON.stringify(foundUser));
-    setUser(foundUser);
-    navigate("/profile");
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={{ textAlign: "center" }}>Login</h2>
-        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+
+        {error && (
+          <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+        )}
+
         <form onSubmit={handleLogin} style={styles.form}>
           <input
             style={styles.input}
@@ -38,6 +48,7 @@ function Login({ setUser }) {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
           <input
             style={styles.input}
             type="password"
@@ -46,7 +57,10 @@ function Login({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit" style={styles.button}>Login</button>
+
+          <button type="submit" style={styles.button}>
+            Login
+          </button>
         </form>
       </div>
     </div>
